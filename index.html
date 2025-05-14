@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Teoría de la Información — Claude Shannon</title>
+
+  <!-- Google Fonts variable -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Overlay de Login -->
+  <div id="login-overlay" class="login-overlay">
+    <form id="login-form" class="login-box" autocomplete="off">
+      <h2>Iniciar sesión</h2>
+
+      <label for="username">Usuario</label>
+      <input id="username" type="text" placeholder="admin" required />
+
+      <label for="password">Contraseña</label>
+      <input id="password" type="password" placeholder="admin" required />
+
+      <button class="btn-primary" type="submit">Entrar</button>
+    </form>
+  </div>
+
+  <!-- Header / Hero -->
+  <header class="hero">
+    <h1 class="hero__title">Teoría de la Información</h1>
+    <p class="hero__subtitle">Claude E. Shannon</p>
+  </header>
+
+  <main class="container">
+    <!-- Resumen -->
+    <section class="card" id="resumen">
+      <h2 class="card__title">Resumen</h2>
+      <p>Claude E. Shannon sentó las bases de la Teoría de la Información en 1948 al definir el concepto de entropía como medida de incertidumbre. Cuanta mayor entropía posee un mensaje, más información potencial contiene y mayor es el reto de transmitirlo de forma eficiente.
+
+Su aporte permitió cuantificar la información en bits y, con ello, optimizar los canales de comunicación, establecer límites de compresión y sentar los cimientos de tecnologías como la fibra óptica, la telefonía móvil y el Internet de hoy.</p> </section>
+
+
+    <!-- Compresión con Huffman -->
+    <section class="card" id="huffman">
+      <h2 class="card__title">Compresión con Huffman</h2>
+
+      <label class="file">
+        <span class="file__label">Carga tu archivo .txt</span>
+        <input type="file" id="subir-txt" accept=".txt" />
+      </label>
+
+      <button id="boton-huffman" class="btn-primary">Calcular</button>
+
+      <div id="resultados" hidden>
+        <h3>Frecuencias de símbolos</h3>
+        <pre id="frecuencias"></pre>
+
+        <h3>Códigos Huffman</h3>
+        <pre id="codigos"></pre>
+
+        <h3>Texto comprimido (bits)</h3>
+        <pre id="comprimido"></pre>
+      </div>
+    </section>
+  </main>
+
+  <!-- JS -->
+  <script src="huffman.js" defer></script>
+  <script>
+    /* --- Autenticación super‑simple --- */
+    const overlay = document.getElementById('login-overlay');
+    const form = document.getElementById('login-form');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+
+      if (user === 'admin' && pass === 'admin') {
+        overlay.classList.add('hidden');      // oculta overlay
+      } else {
+        alert('Credenciales incorrectas');
+        form.reset();
+      }
+    });
+
+    /* UX extra: mostrar resultados al presionar calcular */
+    document.getElementById('boton-huffman')
+      .addEventListener('click', () => document.getElementById('resultados').hidden = false);
+  </script>
+</body>
+</html>

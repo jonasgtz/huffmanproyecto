@@ -1,0 +1,191 @@
+:root {
+  --accent: #ff5656;
+  --accent-dark: #9ea9ff;
+  --bg-light: #f9fafb;
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* =========  Base  ========= */
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  background: var(--bg-light);
+  color: #222;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  width: min(90%, 860px);
+  margin-inline: auto;
+  display: grid;
+  gap: 2.5rem;
+  padding-block: 2.5rem 4rem;
+}
+
+/* =========  Hero  ========= */
+.hero {
+  padding: 4rem 1rem 5rem;
+  text-align: center;
+  background: radial-gradient(circle at top left, var(--accent) -20%, #9ea9ff 80%);
+  color: #fff;
+  clip-path: ellipse(130% 100% at 50% 0%);
+}
+
+.hero__title {
+  font-size: clamp(2rem, 5vw + 1rem, 3.5rem);
+  font-weight: 700;
+}
+
+.hero__subtitle {
+  font-size: 1.2rem;
+  font-weight: 300;
+  opacity: 0.85;
+}
+
+/* =========  Cards  ========= */
+.card {
+  backdrop-filter: blur(12px);
+  background: var(--card-bg);
+  border-radius: 1.2rem;
+  box-shadow: var(--shadow);
+  padding: 2rem 1.8rem;
+  animation: fade-in 0.6s ease both;
+  transition: transform 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card__title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #111;
+}
+
+/* =========  File Input  ========= */
+.file {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.file__label {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.file input[type="file"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px dashed #ccc;
+  border-radius: 0.8rem;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.file input[type="file"]:hover {
+  border-color: var(--accent);
+}
+
+/* =========  Button  ========= */
+.btn-primary {
+  display: inline-block;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  margin-block: 0.8rem 0;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover   { background: var(--accent-dark); transform: translateY(-2px); }
+.btn-primary:active { transform: translateY(0); }
+
+/* =========  Preformatted blocks  ========= */
+pre {
+  background: #f1f1f1;
+  padding: 1rem 1.2rem;
+  border-radius: 0.6rem;
+  overflow-x: auto;
+  font-size: 0.95rem;
+  margin-top: 0.6rem;
+}
+
+/* =========  Login overlay  ========= */
+.login-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.login-overlay.hidden { display: none; }
+
+.login-box {
+  width: min(90%, 370px);
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: var(--shadow);
+  padding: 2.2rem 2rem 2.5rem;
+  text-align: center;
+  animation: fade-in 0.5s ease both;
+}
+
+.login-box h2 {
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+.login-box label {
+  display: block;
+  text-align: left;
+  margin-bottom: 0.3rem;
+  margin-top: 0.7rem;
+  font-weight: 500;
+  color: #444;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.8rem;
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+}
+
+.login-box input:focus {
+  outline: 2px solid var(--accent);
+  border-color: var(--accent);
+}
+
+/* =========  Animations  ========= */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =========  Responsive tweaks  ========= */
+@media (width <= 600px) {
+  .card           { padding: 1.5rem 1.25rem; }
+  .card__title    { font-size: 1.35rem; }
+  .login-box h2   { font-size: 1.4rem; }
+}
